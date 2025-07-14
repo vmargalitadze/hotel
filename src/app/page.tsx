@@ -1,7 +1,7 @@
 import Hero from "@/components/Hero";
 import Perfect from "@/components/Perfect";
 import Sec from "@/components/Sec";
-
+import Cottages from "@/components/Cottages";
 
 export default function Home() {
   return (
@@ -9,6 +9,7 @@ export default function Home() {
    <Hero/>
    <Sec/>
    <Perfect/>
+   <Cottages/>
    </>
   );
 }

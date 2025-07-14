@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 function Perfect() {
   return (
-    <section className="w-full py-20 bg-white">
+    <section className="w-full mt-16 bg-white">
       <div className="flex flex-col md:flex-row items-start justify-between px-4 md:px-12 lg:px-20 gap-12">
         {/* მარცხენა: დიდი სურათი */}
         <div className="w-full md:w-[60%]">
@@ -16,8 +16,8 @@ function Perfect() {
         </div>
 
         {/* მარჯვენა: სურათი + ტექსტი ცენტრში */}
-        <div className="w-full md:w-[35%] justify-center mt-24 flex flex-col items-center md:items-center text-center">
-          <h1 className="text-[30px] font-cormorant font-bold mb-6">
+        <div className="w-full md:w-[35%] justify-center mt-5 md:mt-24 flex flex-col items-center md:items-center text-center">
+          <h1 className="text-[20px] md:text-[30px] font-cormorant font-bold mb-6">
             სრულყოფილი გაქცევა გელოდება
           </h1>
 

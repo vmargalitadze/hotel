@@ -32,3 +32,36 @@ body {
   width: 100%;
   max-width: 1720px;
 }
+
+.first {
+    background-image: url(/cottages/1.webp);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 500px; 
+    
+}
+
+.second {
+  background-image: url(/cottages/2.webp);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 500px; 
+}
+
+.third {
+  background-image: url(/cottages/3.webp);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 500px; 
+}
+
+@media (max-width: 768px) {
+  .first,
+  .second,
+  .third {
+   width: 100% !important;
+  }
+}

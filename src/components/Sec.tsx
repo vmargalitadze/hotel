@@ -7,7 +7,7 @@ function Sec() {
       <div className="max-w-7xl mt-16 mx-auto">
         <div className="container mx-auto">
 
-        <h2 className="  text-[20px] mb-4 md:text-[30px] font-cormorant font-bold text-start">
+        <h2 className="  text-[20px] mb-4 md:text-[30px] font-cormorant font-bold md:text-start text-center">
           კოტეჯის გამოცდილება, რომლის მსგავსიც სხვა არაფერია –{" "}
           <span> <br/>
             <span>სადაც კომფორტი ბუნების სილამაზეს ხვდება</span>
@@ -28,7 +28,7 @@ function Sec() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               <div className="mt-6">
-                <h3 className="text-xl sm:text-2xl font-cormorant font-semibold text-gray-800 mb-4">
+                <h3 className="text-xl sm:text-2xl text-center md:text-start font-cormorant font-semibold text-gray-800 mb-4">
                   ბუნებაში ჩაფლული ჩვენი კოტეჯები თანამედროვე კომფორტსა და
                   სოფლურ ხიბლს აერთიანებს. გაიღვიძეთ ჩიტების ჭიკჭიკით, ისუნთქეთ
                   სუფთა ჰაერით და იგრძენით თავი განახლებულად.

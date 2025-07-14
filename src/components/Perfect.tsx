@@ -10,6 +10,7 @@ function Perfect() {
             src="/perfect/polina-kuzovkova-dh3ykciekro-unsplash.webp"
             alt="სურათი"
             width={500}
+            unoptimized
             height={700}
             className="w-full h-[900px] object-cover rounded-xl shadow-lg"
           />
@@ -26,6 +27,7 @@ function Perfect() {
               src="/perfect/pratik-bachhav-xtae1e3si6s-unsplash.webp"
               alt="სურათი"
               fill
+              unoptimized
               className="object-cover"
             />
             <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition duration-300" />

@@ -11,7 +11,7 @@ const Hero = () => {
         layout="fill"
         objectFit="cover"
         quality={90}
-        priority
+        unoptimized
         className="z-0"
       />
       {/* Overlay */}

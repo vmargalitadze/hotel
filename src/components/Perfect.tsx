@@ -31,7 +31,7 @@ function Perfect() {
             <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition duration-300" />
           </div>
 
-          <p className="text-gray-600 text-[18px] font-cormorant">
+          <p className=" text-[18px] font-cormorant">
             გაიღვიძეთ განსაცვიფრებელი ხედებით, დაისვენეთ მყუდრო კოტეჯებში და
             შეისწავლეთ თვალწარმტაცი ბილიკები, ჩანჩქერები და ველური ბუნება.
             თავგადასავლებისთვის თუ დასვენებისთვის, ეს იდეალური ადგილია

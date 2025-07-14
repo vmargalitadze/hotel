@@ -28,7 +28,7 @@ function Sec() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               <div className="mt-6">
-                <h3 className="text-xl sm:text-2xl text-center md:text-start font-cormorant font-semibold text-gray-800 mb-4">
+                <h3 className="text-xl sm:text-2xl text-center md:text-start font-cormorant font-semibold  mb-4">
                   ბუნებაში ჩაფლული ჩვენი კოტეჯები თანამედროვე კომფორტსა და
                   სოფლურ ხიბლს აერთიანებს. გაიღვიძეთ ჩიტების ჭიკჭიკით, ისუნთქეთ
                   სუფთა ჰაერით და იგრძენით თავი განახლებულად.

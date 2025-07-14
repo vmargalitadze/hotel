@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image";
+
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 function Cottages() {

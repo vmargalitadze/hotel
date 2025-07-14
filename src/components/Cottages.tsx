@@ -18,7 +18,7 @@ function Cottages() {
                     <div className="grid mt-2 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
                         <div className="first rounded-lg flex flex-col justify-end items-center text-white h-full">
                             <div className="mb-6 flex flex-col w-full">
-                                <h4 className="text-[30px] font-semibold w-full">
+                                <h4 className="text-[20px] md:text-[30px] font-semibold w-full">
                                     <Link
                                         href="#"
                                         className="flex items-center justify-around w-full text-white hover:underline"
@@ -37,7 +37,7 @@ function Cottages() {
 
                         <div className="second rounded-lg flex flex-col justify-end items-center text-white h-full">
                             <div className="mb-6 flex flex-col w-full">
-                                <h4 className="text-[30px] font-semibold w-full">
+                                <h4 className="text-[20px] md:text-[30px] font-semibold w-full">
                                     <Link
                                         href="#"
                                         className="flex items-center justify-around w-full text-white hover:underline"
@@ -54,7 +54,7 @@ function Cottages() {
 
                         <div className="third rounded-lg flex flex-col justify-end items-center text-white h-full">
                             <div className="mb-6 flex flex-col w-full">
-                                <h4 className="text-[30px] font-semibold w-full">
+                                <h4 className="text-[20px] md:text-[30px] font-semibold w-full">
                                     <Link
                                         href="#"
                                         className="flex items-center justify-around w-full text-white hover:underline"

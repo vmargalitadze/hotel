@@ -5,7 +5,7 @@ import Link from "next/link";
 function Cottages() {
     return <>
         <section>
-            <div className="max-w-7xl mt-16 mx-auto">
+            <div className="max-w-7xl bg-white mt-16 mx-auto">
                 <div className="container mx-auto">
 
                     <h2 className="  text-[20px] mb-4 md:text-[30px] font-cormorant font-bold md:text-start text-center">

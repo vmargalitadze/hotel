@@ -18,7 +18,7 @@ function Perfect() {
 
         {/* მარჯვენა: სურათი + ტექსტი ცენტრში */}
         <div className="w-full md:w-[35%] justify-center mt-5 md:mt-24 flex flex-col items-center md:items-center text-center">
-          <h1 className="text-[20px] md:text-[30px] font-cormorant font-bold mb-6">
+          <h1 className="text-[20px] md:text-[30px] text-black font-cormorant font-bold mb-6">
             სრულყოფილი გაქცევა გელოდება
           </h1>
 
@@ -33,7 +33,7 @@ function Perfect() {
             <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition duration-300" />
           </div>
 
-          <p className=" text-[18px] font-cormorant">
+          <p className=" text-[18px] text-black font-cormorant">
             გაიღვიძეთ განსაცვიფრებელი ხედებით, დაისვენეთ მყუდრო კოტეჯებში და
             შეისწავლეთ თვალწარმტაცი ბილიკები, ჩანჩქერები და ველური ბუნება.
             თავგადასავლებისთვის თუ დასვენებისთვის, ეს იდეალური ადგილია

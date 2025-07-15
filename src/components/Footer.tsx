@@ -19,25 +19,25 @@ const Footer = () => {
             href="#"
             className="hover:text-[#ff7200] transition-colors duration-200"
           >
-            Home
+           მთავარი
           </a>
           <a
             href="#"
             className="hover:text-[#ff7200] transition-colors duration-200"
           >
-            Rooms
+            ოთახები
           </a>
           <a
             href="#"
             className="hover:text-[#ff7200] transition-colors duration-200"
           >
-            About
+            შესახებ
           </a>
           <a
             href="#"
             className="hover:text-[#ff7200] transition-colors duration-200"
           >
-            Contact
+            კონტაქტი
           </a>
         </nav>
         {/* Social Icons */}

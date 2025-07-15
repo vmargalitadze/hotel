@@ -1,9 +1,9 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap');
 
-
-
-
-
+* {
+  font-family: 'Cormorant Garamond', serif !important;
+}
 
 
 .container {
@@ -16,12 +16,11 @@
 }
 
 .first {
-    background-image: url(/cottages/1.webp);
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 500px; 
-    
+  background-image: url(/cottages/1.webp);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 500px;
 }
 
 .second {
@@ -29,7 +28,7 @@
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 500px; 
+  height: 500px;
 }
 
 .third {
@@ -37,34 +36,19 @@
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 500px; 
+  height: 500px;
 }
 
 @media (max-width: 768px) {
   .first,
   .second,
   .third {
-   width: 100% !important;
+    width: 100% !important;
   }
 }
 
-.swiper-pagination-bullet{
+.swiper-pagination-bullet {
   background-color: #ff7200 !important;
   width: 17px !important;
   height: 17px !important;
-
-}
-
-.items{
-  --display: flex;
-    --flex-direction: row;
-    --container-widget-width: initial;
-    --container-widget-height: 100%;
-    --container-widget-flex-grow: 1;
-    --container-widget-align-self: stretch;
-    --flex-wrap-mobile: wrap;
-    --padding-top: 0px;
-    --padding-bottom: 0px;
-    --padding-left: 0px;
-    --padding-right: 0px;
 }

@@ -81,50 +81,9 @@ const RoomDetailsPage = async(props: {
         </ul>
       </div>
 
-      {/* Bookings */}
-      <div className="mt-10 font-cormorant">
-        <h3 className="text-[20px] font-bold mb-4 font-cormorant">დაჯავშნები</h3>
-        {room.bookings.length === 0 ? (
-          <div>ჯერჯერობით დაჯავშნა არ არის</div>
-        ) : (
-          <ul className="list-disc list-inside text-[18px] text-gray-700 space-y-1 font-cormorant">
-            {room.bookings.map((b, i) => (
-              <li key={i}>
-                {b.fullName} | {b.checkIn.toLocaleDateString()} - {b.checkOut.toLocaleDateString()} | სტუმრები: {b.guests}
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+  
 
-      {/* Comments */}
-      <div className="mt-10 font-cormorant">
-        <h3 className="text-[20px] font-bold mb-4 font-cormorant">კომენტარები</h3>
-        {room.comments.length === 0 ? (
-          <div>კომენტარები ჯერ არ არის</div>
-        ) : (
-          <ul className="list-disc list-inside text-[18px] text-gray-700 space-y-1 font-cormorant">
-            {room.comments.map((c, i) => (
-              <li key={i}>
-                <b>{c.name}</b>: {c.message} <span className="text-gray-400 text-sm">({c.createdAt && new Date(c.createdAt).toLocaleDateString()})</span>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
 
-      {/* Add Review */}
-      <div className="mt-12 font-cormorant">
-        <h3 className="text-2xl font-semibold mb-4 font-cormorant">დამატეთ შეფასება</h3>
-        <form className="space-y-4 font-cormorant">
-          <input type="text" placeholder="თქვენი სახელი" className="w-full border px-4 py-2 rounded font-cormorant" />
-          <input type="email" placeholder="თქვენი ელ.ფოსტა" className="w-full border px-4 py-2 rounded font-cormorant" />
-          <textarea placeholder="კომენტარი" rows={5} className="w-full border px-4 py-2 rounded font-cormorant" />
-          <button type="submit" className="bg-[#ff7200] text-white px-6 py-2 rounded font-semibold hover:bg-orange-600 font-cormorant">
-            შეფასების დამატება
-          </button>
-        </form>
-      </div>
     </div>
   );
 }

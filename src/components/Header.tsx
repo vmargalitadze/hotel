@@ -26,7 +26,7 @@ function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
             <Link 
-              href="#home" 
+              href="/" 
               className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-[18px] font-medium transition-colors duration-200"
             >
               მთავარი
@@ -113,7 +113,7 @@ function Header() {
       <div className={`${isMenuOpen ? 'block' : 'hidden'} md:hidden`}>
         <div className="px-2 pt-2 pb-3 space-y-1 text-center justify-center items-center flex flex-col sm:px-3 bg-white h-screen border-t border-gray-200">
           <Link
-            href="#home"
+            href="/"
             onClick={closeMenu}
             className="text-gray-600 hover:text-gray-900 block px-3 py-2 rounded-md text-[18px] font-medium transition-colors duration-200"
           >

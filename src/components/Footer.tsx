@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const Footer = () => {
@@ -15,30 +16,30 @@ const Footer = () => {
         </div>
         {/* Navigation */}
         <nav className="flex gap-8 text-base font-medium">
-          <a
-            href="#"
+          <Link
+            href="/"
             className="hover:text-[#ff7200] transition-colors duration-200"
           >
            მთავარი
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            href="/rooms"
             className="hover:text-[#ff7200] transition-colors duration-200"
           >
             ოთახები
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            href="/about"
             className="hover:text-[#ff7200] transition-colors duration-200"
           >
             შესახებ
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            href="/contact"
             className="hover:text-[#ff7200] transition-colors duration-200"
           >
             კონტაქტი
-          </a>
+          </Link>
         </nav>
         {/* Social Icons */}
         <div className="flex gap-5">

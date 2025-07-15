@@ -1,7 +1,6 @@
 import Image from "next/image";
 import BookingForm from "./BookingForm";
-import { getBookingsByRoomId } from "@/actions/booking";
-import rooms from "@/components/data";
+import {  getRoomById } from "@/actions/booking";
 
 const RoomDetailsPage = async(props: {
   params:Promise< {id:string,locale: string} >
@@ -9,20 +8,19 @@ const RoomDetailsPage = async(props: {
   const {id} = await props.params;
   const roomId = Number(id);
 
-  // Get room data from rooms array
-  const room = rooms.find(r => r.id === roomId);
+  // Get room data from database
+  const room = await getRoomById(roomId);
   if (!room) return <div>ოთახი ვერ მოიძებნა</div>;
 
   // Fetch booked date ranges for this room
-  const bookings = await getBookingsByRoomId(roomId);
-  const bookedRanges = bookings.map(b => ({ checkIn: b.checkIn.toISOString().slice(0,10), checkOut: b.checkOut.toISOString().slice(0,10) }));
+  const bookedRanges = room.bookings.map(b => ({ checkIn: b.checkIn.toISOString().slice(0,10), checkOut: b.checkOut.toISOString().slice(0,10) }));
 
   return (
     <div className="max-w-7xl mx-auto px-4 mt-16 py-10 font-cormorant">
       {/* Header */}
       <div className="mb-10">
         <h1 className="text-4xl font-bold text-gray-800 mb-2 font-cormorant">{room.name}</h1>
-        <p className="text-gray-500 font-cormorant">ოთახის დეტალები</p>
+       
       </div>
 
       {/* Main Content */}
@@ -48,12 +46,22 @@ const RoomDetailsPage = async(props: {
               />
             ))}
           </div>
+        <div className="mb-10">
+      
+        <p className="text-gray-500 font-cormorant">ოთახის დეტალები:</p>
+        <div className="text-gray-700  text-[18px] mt-2">{room.description}</div>
+        <div className="text-gray-700 text-[18px] mt-2">ფასი: ₾{room.price}</div>
+        {room.discountPrice && <div className="text-green-600 text-[18px] mt-1">ფასდაკლება: ₾{room.discountPrice}</div>}
+        <div className="text-gray-700 text-[18px] mt-2">ტევადობა: {room.capacity} სტუმარი</div>
+        {room.size && <div className="text-gray-700 text-[18px] mt-2">ზომა: {room.size} მ²</div>}
+        <div className="text-gray-700 text-[18px] mt-2">შესვლა: {room.checkInTime} | გასვლა: {room.checkOutTime}</div>
+        <div className="text-gray-700 text-[18px] mt-2">{room.available ? "ხელმისაწვდომია" : "დაკავებულია"}</div>
+      </div>
         </div>
-
         {/* Reservation Section */}
         <div className="bg-gray-100 p-6 rounded-xl shadow-md font-cormorant">
           <h2 className="text-xl font-semibold mb-4 font-cormorant">დაჯავშნა</h2>
-          <BookingForm roomId={roomId} price={room.price} bookedRanges={bookedRanges} />
+          <BookingForm roomId={roomId} price={room.price} bookedRanges={bookedRanges} capacity={room.capacity} />
         </div>
       </div>
 
@@ -61,11 +69,7 @@ const RoomDetailsPage = async(props: {
       <div className="mt-12 font-cormorant">
         <h3 className="text-[20px] font-bold mb-4 font-cormorant">სერვისები</h3>
         <ul className="grid grid-cols-2 text-[18px] md:grid-cols-3 lg:grid-cols-4 gap-2 text-gray-700 list-disc list-inside font-cormorant">
-          <li>42&quot; სრული ეკრანის ტელევიზორი</li>
-          <li>მინი-მაცივარი</li>
-          <li>სეიფი</li>
-          <li>უფასო ბოთლის წყალი</li>
-          <li>საუზმე</li>
+          {room.amenities.map((a, i) => <li key={i}>{a}</li>)}
         </ul>
       </div>
 
@@ -73,12 +77,40 @@ const RoomDetailsPage = async(props: {
       <div className="mt-10 font-cormorant">
         <h3 className="text-[20px] font-bold mb-4 font-cormorant">წესები და პირობები</h3>
         <ul className="list-disc list-inside text-[18px] text-gray-700 space-y-1 font-cormorant">
-          <li>მოწევა აკრძალულია</li>
-          <li>ჩექ-ინი 12:00 საათის შემდეგ</li>
-          <li>ჩექ-აუტი 11:00 საათამდე</li>
-          <li>ცხოველები აკრძალულია</li>
-          <li>ჩასახლებაზე საჭიროა პირადობის მოწმობა</li>
+          {room.rules.map((r, i) => <li key={i}>{r}</li>)}
         </ul>
+      </div>
+
+      {/* Bookings */}
+      <div className="mt-10 font-cormorant">
+        <h3 className="text-[20px] font-bold mb-4 font-cormorant">დაჯავშნები</h3>
+        {room.bookings.length === 0 ? (
+          <div>ჯერჯერობით დაჯავშნა არ არის</div>
+        ) : (
+          <ul className="list-disc list-inside text-[18px] text-gray-700 space-y-1 font-cormorant">
+            {room.bookings.map((b, i) => (
+              <li key={i}>
+                {b.fullName} | {b.checkIn.toLocaleDateString()} - {b.checkOut.toLocaleDateString()} | სტუმრები: {b.guests}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+
+      {/* Comments */}
+      <div className="mt-10 font-cormorant">
+        <h3 className="text-[20px] font-bold mb-4 font-cormorant">კომენტარები</h3>
+        {room.comments.length === 0 ? (
+          <div>კომენტარები ჯერ არ არის</div>
+        ) : (
+          <ul className="list-disc list-inside text-[18px] text-gray-700 space-y-1 font-cormorant">
+            {room.comments.map((c, i) => (
+              <li key={i}>
+                <b>{c.name}</b>: {c.message} <span className="text-gray-400 text-sm">({c.createdAt && new Date(c.createdAt).toLocaleDateString()})</span>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
 
       {/* Add Review */}

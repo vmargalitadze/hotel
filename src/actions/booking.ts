@@ -79,4 +79,14 @@ export async function getBookingsByRoomId(roomId: number) {
   });
 }
 
+export async function getRoomById(id: number) {
+  return prisma.room.findUnique({
+    where: { id },
+    include: {
+      bookings: true,
+      comments: true,
+    },
+  });
+}
+
 

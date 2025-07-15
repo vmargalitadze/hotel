@@ -1,13 +1,34 @@
 "use client";
 import { createBooking } from "@/actions/booking";
 import { useState } from "react";
-
-
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { format } from "date-fns";
 interface FieldErrors {
   [key: string]: string | undefined;
 }
 
-export default function BookingForm({ roomId, price, bookedRanges }: { roomId: number; price: number; bookedRanges: { checkIn: string; checkOut: string }[] }) {
+// ✅ Helper: parse YYYY-MM-DD string to local Date (no -1 day issues)
+
+
+// ✅ Helper: add days
+function addDays(date: Date, days: number) {
+  const result = new Date(date);
+  result.setDate(result.getDate() + days);
+  return result;
+}
+
+export default function BookingForm({
+  roomId,
+  price,
+  bookedRanges,
+  capacity,
+}: {
+  roomId: number;
+  price: number;
+  bookedRanges: { checkIn: string; checkOut: string }[];
+  capacity: number;
+}) {
   const [form, setForm] = useState({
     fullName: "",
     email: "",
@@ -18,6 +39,7 @@ export default function BookingForm({ roomId, price, bookedRanges }: { roomId: n
     guests: 1,
     roomId,
   });
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
@@ -62,89 +84,213 @@ export default function BookingForm({ roomId, price, bookedRanges }: { roomId: n
         "errors" in err &&
         Array.isArray((err as { errors?: unknown }).errors)
       ) {
-        // Zod validation errors
         const errors: FieldErrors = {};
-        (err as { errors: Array<{ path: string[]; message: string }> }).errors.forEach((zodErr) => {
-          if (zodErr.path && zodErr.path[0]) {
-            errors[zodErr.path[0]] = zodErr.message;
+        (err as { errors: Array<{ path: string[]; message: string }> }).errors.forEach(
+          (zodErr) => {
+            if (zodErr.path && zodErr.path[0]) {
+              errors[zodErr.path[0]] = zodErr.message;
+            }
           }
-        });
+        );
         setFieldErrors(errors);
       } else {
-        setError("დაჯავშნა ვერ მოხერხდა. გთხოვთ, შეამოწმეთ ველები ან სცადეთ მოგვიანებით.");
+        setError(
+          "დაჯავშნა ვერ მოხერხდა. გთხოვთ, შეამოწმეთ ველები ან სცადეთ მოგვიანებით."
+        );
       }
     }
+
     setLoading(false);
   };
+  function parseLocalDate(dateString: string) {
+    const [year, month, day] = dateString.split("-").map(Number);
+    return new Date(year, month - 1, day);
+  }
+  // ✅ Check if single date is blocked (within existing booking ranges)
+  function isDateBlocked(date: Date) {
+    const current = new Date(date.getFullYear(), date.getMonth(), date.getDate());
 
-  // Helper to check if a date is blocked
-  function isDateBlocked(dateStr: string) {
-    if (!dateStr) return false;
-    const date = new Date(dateStr);
-    return bookedRanges.some(range => {
-      const start = new Date(range.checkIn);
-      const end = new Date(range.checkOut);
-      return date >= start && date <= end;
+    return bookedRanges.some(({ checkIn, checkOut }) => {
+      const start = parseLocalDate(checkIn);
+      const end = parseLocalDate(checkOut);
+      return current >= start && current < end;
     });
   }
 
-  // Show error if selected range overlaps
-  const isRangeBlocked = form.checkIn && form.checkOut && bookedRanges.some(range => {
-    const start = new Date(range.checkIn);
-    const end = new Date(range.checkOut);
-    const checkIn = new Date(form.checkIn);
-    const checkOut = new Date(form.checkOut);
-    return (
-      (checkIn <= end && checkIn >= start) ||
-      (checkOut <= end && checkOut >= start) ||
-      (checkIn <= start && checkOut >= end)
-    );
-  });
+  // ✅ Check if selected checkIn/checkOut range overlaps with existing bookings
+  const isRangeBlocked =
+    form.checkIn &&
+    form.checkOut &&
+    bookedRanges.some((range) => {
+      const existingStart = new Date(range.checkIn).setHours(0, 0, 0, 0);
+      const existingEnd = new Date(range.checkOut).setHours(0, 0, 0, 0);
+      const newStart = parseLocalDate(form.checkIn).setHours(0, 0, 0, 0);
+      const newEnd = parseLocalDate(form.checkOut).setHours(0, 0, 0, 0);
+
+      return newStart < existingEnd && newEnd > existingStart;
+    });
+
+  function getNights() {
+    if (!form.checkIn || !form.checkOut) return 0;
+    const checkIn = parseLocalDate(form.checkIn);
+    const checkOut = parseLocalDate(form.checkOut);
+    const diff = checkOut.getTime() - checkIn.getTime();
+    const nights = diff / (1000 * 60 * 60 * 24);
+    return nights > 0 ? nights : 0;
+  }
+
+  const nights = getNights();
+  const totalPrice = nights * price;
 
   return (
     <form onSubmit={handleSubmit} className="space-y-3 font-cormorant">
       <div>
-        <input name="fullName" value={form.fullName} onChange={handleChange} placeholder="სრული სახელი" className="w-full px-4 py-2 border rounded" />
-        {fieldErrors.fullName && <div className="text-red-500 text-sm mt-1">{fieldErrors.fullName}</div>}
+        <input
+          name="fullName"
+          value={form.fullName}
+          onChange={handleChange}
+          placeholder="სრული სახელი"
+          className="w-full px-4 py-2 border rounded"
+        />
+        {fieldErrors.fullName && (
+          <div className="text-red-500 text-sm mt-1">
+            {fieldErrors.fullName}
+          </div>
+        )}
       </div>
       <div>
-        <input name="email" value={form.email} onChange={handleChange} placeholder="ელ.ფოსტა" className="w-full px-4 py-2 border rounded" />
-        {fieldErrors.email && <div className="text-red-500 text-sm mt-1">{fieldErrors.email}</div>}
+        <input
+          name="email"
+          value={form.email}
+          onChange={handleChange}
+          placeholder="ელ.ფოსტა"
+          className="w-full px-4 py-2 border rounded"
+        />
+        {fieldErrors.email && (
+          <div className="text-red-500 text-sm mt-1">{fieldErrors.email}</div>
+        )}
       </div>
       <div>
-        <input name="phone" value={form.phone} onChange={handleChange} placeholder="ტელეფონი" className="w-full px-4 py-2 border rounded" />
-        {fieldErrors.phone && <div className="text-red-500 text-sm mt-1">{fieldErrors.phone}</div>}
+        <input
+          name="phone"
+          value={form.phone}
+          onChange={handleChange}
+          placeholder="ტელეფონი"
+          className="w-full px-4 py-2 border rounded"
+        />
+        {fieldErrors.phone && (
+          <div className="text-red-500 text-sm mt-1">{fieldErrors.phone}</div>
+        )}
       </div>
       <div>
-        <input name="piradoba" value={form.piradoba} onChange={handleChange} placeholder="პირადობა" className="w-full px-4 py-2 border rounded" />
-        {fieldErrors.piradoba && <div className="text-red-500 text-sm mt-1">{fieldErrors.piradoba}</div>}
+        <input
+          name="piradoba"
+          value={form.piradoba}
+          onChange={handleChange}
+          placeholder="პირადობა"
+          className="w-full px-4 py-2 border rounded"
+        />
+        {fieldErrors.piradoba && (
+          <div className="text-red-500 text-sm mt-1">
+            {fieldErrors.piradoba}
+          </div>
+        )}
       </div>
-      <div>
-        <input name="checkIn" type="date" value={form.checkIn} onChange={handleChange} className="w-full px-4 py-2 border rounded" min={new Date().toISOString().slice(0, 10)} />
-        {fieldErrors.checkIn && <div className="text-red-500 text-sm mt-1">{fieldErrors.checkIn}</div>}
-        {form.checkIn && isDateBlocked(form.checkIn) && <div className="text-red-500 text-sm mt-1">ეს თარიღი უკვე დაჯავშნილია</div>}
+
+      <div className="flex gap-2">
+        <DatePicker
+          selected={form.checkIn ? parseLocalDate(form.checkIn) : null}
+          onChange={(date) => {
+            if (!date) return;
+            const formatted = format(date, "yyyy-MM-dd");
+            setForm((prev) => ({ ...prev, checkIn: formatted }));
+            setFieldErrors((prev) => ({ ...prev, checkIn: undefined }));
+          }}
+          minDate={new Date()}
+          filterDate={(date) => {
+            const current = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+            return !bookedRanges.some(({ checkIn, checkOut }) => {
+              const start = parseLocalDate(checkIn);
+              const end = parseLocalDate(checkOut);
+              return current >= start && current < end;
+            });
+          }}
+          placeholderText="ჩამოსვლის თარიღი"
+          className="w-full px-4 py-2 border rounded"
+          dateFormat="yyyy-MM-dd"
+        />
+
+        <DatePicker
+          selected={form.checkOut ? parseLocalDate(form.checkOut) : null}
+          onChange={(date) => {
+            if (!date) return;
+            const formatted = format(date, "yyyy-MM-dd");
+            setForm((prev) => ({ ...prev, checkOut: formatted }));
+            setFieldErrors((prev) => ({ ...prev, checkOut: undefined }));
+          }}
+          minDate={form.checkIn ? addDays(parseLocalDate(form.checkIn), 1) : new Date()}
+          filterDate={(date) => {
+            const current = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+            return !bookedRanges.some(({ checkIn, checkOut }) => {
+              const start = parseLocalDate(checkIn);
+              const end = parseLocalDate(checkOut);
+              return current > start && current < end;
+            });
+          }}
+          placeholderText="გამგზავრების თარიღი"
+          className="w-full px-4 py-2 border rounded"
+          dateFormat="yyyy-MM-dd"
+        />
       </div>
+
       <div>
-        <input name="checkOut" type="date" value={form.checkOut} onChange={handleChange} className="w-full px-4 py-2 border rounded" min={form.checkIn || new Date().toISOString().slice(0, 10)} />
-        {fieldErrors.checkOut && <div className="text-red-500 text-sm mt-1">{fieldErrors.checkOut}</div>}
-        {form.checkOut && isDateBlocked(form.checkOut) && <div className="text-red-500 text-sm mt-1">ეს თარიღი უკვე დაჯავშნილია</div>}
-      </div>
-      {isRangeBlocked && <div className="text-red-500 text-sm mt-1">არჩეული პერიოდი უკვე დაჯავშნილია</div>}
-      <div>
-        <select name="guests" value={form.guests} onChange={handleChange} className="w-full px-4 py-2 border rounded">
-          <option value={1}>1 სტუმარი</option>
-          <option value={2}>2 სტუმარი</option>
-          <option value={3}>3 სტუმარი</option>
-          <option value={4}>4 სტუმარი</option>
-          <option value={5}>5 სტუმარი</option>
+        <select
+          name="guests"
+          value={form.guests}
+          onChange={handleChange}
+          className="w-full px-4 py-2 border rounded"
+        >
+          {Array.from({ length: capacity }, (_, i) => (
+            <option key={i + 1} value={i + 1}>
+              {i + 1} სტუმარი
+            </option>
+          ))}
         </select>
-        {fieldErrors.guests && <div className="text-red-500 text-sm mt-1">{fieldErrors.guests}</div>}
+        {fieldErrors.guests && (
+          <div className="text-red-500 text-sm mt-1">{fieldErrors.guests}</div>
+        )}
       </div>
-      <div className="mt-4 font-bold text-lg font-cormorant">₾{price} / ღამე</div>
-      <button type="submit" disabled={loading || isRangeBlocked || isDateBlocked(form.checkIn) || isDateBlocked(form.checkOut)} className="w-full mt-2 bg-[#ff7200] rounded-2xl text-white font-semibold py-2 cursor-pointer font-cormorant">
+
+      <div className="mt-4 font-bold text-lg font-cormorant">
+        ₾{price} / ღამე
+        {nights > 0 && (
+          <div className="text-base font-normal mt-1">
+            ჯამი: ₾{totalPrice} ({nights} ღამე)
+          </div>
+        )}
+      </div>
+
+      <button
+        type="submit"
+        disabled={
+          loading ||
+          isRangeBlocked ||
+          isDateBlocked(parseLocalDate(form.checkIn)) ||
+          (isDateBlocked(parseLocalDate(form.checkOut)) &&
+            !bookedRanges.some(
+              (range) =>
+                parseLocalDate(form.checkOut).toDateString() ===
+                new Date(range.checkOut).toDateString()
+            ))
+        }
+        className="w-full mt-2 bg-[#ff7200] rounded-2xl text-white font-semibold py-2 cursor-pointer font-cormorant"
+      >
         {loading ? "იტვირთება..." : "დაჯავშნა"}
       </button>
-      {success && <div className="text-green-600">დაჯავშნა წარმატებით შესრულდა!</div>}
+
+      {success && (
+        <div className="text-green-600">დაჯავშნა წარმატებით შესრულდა!</div>
+      )}
       {error && <div className="text-red-500 mt-2">{error}</div>}
     </form>
   );

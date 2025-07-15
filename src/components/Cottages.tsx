@@ -26,7 +26,7 @@ function Cottages() {
                                     >
                                         <span>
                                             The Forest Haven</span>
-                                        <span className="bg-white rounded-full w-10 h-10 flex items-center justify-center ml-4 shrink-0">
+                                        <span className="bg-[#ff7200] rounded-full w-10 h-10 flex items-center justify-center ml-4 shrink-0">
                                             <ArrowRight className="text-black text-2xl" />
                                         </span>
                                     </Link>
@@ -44,7 +44,7 @@ function Cottages() {
                                         aria-label="Lakeside Serenity"
                                     >
                                         <span>Lakeside Serenity</span>
-                                        <span className="bg-white rounded-full w-10 h-10 flex items-center justify-center ml-4 shrink-0">
+                                        <span className="bg-[#ff7200] rounded-full w-10 h-10 flex items-center justify-center ml-4 shrink-0">
                                             <ArrowRight className="text-black text-2xl" />
                                         </span>
                                     </Link>
@@ -61,7 +61,7 @@ function Cottages() {
                                         aria-label="Lakeside Serenity"
                                     >
                                         <span>Mountain View</span>
-                                        <span className="bg-white rounded-full w-10 h-10 flex items-center justify-center ml-4 shrink-0">
+                                        <span className="bg-[#ff7200] rounded-full w-10 h-10 flex items-center justify-center ml-4 shrink-0">
                                             <ArrowRight className="text-black text-2xl" />
                                         </span>
                                     </Link>

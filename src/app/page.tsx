@@ -3,6 +3,7 @@ import Perfect from "@/components/Perfect";
 import Sec from "@/components/Sec";
 import Cottages from "@/components/Cottages";
 import Moments from "@/components/Moments";
+import Deals from "@/components/Deals";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
    <Perfect/>
    <Cottages/>
    <Moments/>
+   <Deals/>
    </>
   );
 }

@@ -11,7 +11,6 @@ import "swiper/css/effect-fade";
 const slides = [
   "/hero/photo-1449158743715-0a90ebb6d2d8.avif",
   "/hero/HD-wallpaper-forest-cottage-house-mountains-path-trees-artwork.jpg",
-
 ];
 
 const Moments = () => {
@@ -60,8 +59,9 @@ const Moments = () => {
 
               {/* Bottom Left Paragraph */}
               <div className="absolute bottom-10 left-10 md:left-24 z-20 max-w-[90%] md:max-w-[60%]">
-                <p className="text-white text-sm md:text-lg drop-shadow-md leading-relaxed">
-                  ჩაეფლეთ ბუნებაში და შექმენით დაუვიწყარი მოგონებები <br /> ჩვენი მრავალფეროვანი გარე და დასასვენებელი აქტივობებით.
+                <p className=" text-[18px] text-white font-cormorant">
+                  ჩაეფლეთ ბუნებაში და შექმენით დაუვიწყარი მოგონებები <br />{" "}
+                  ჩვენი მრავალფეროვანი გარე და დასასვენებელი აქტივობებით.
                 </p>
               </div>
             </div>
@@ -69,7 +69,7 @@ const Moments = () => {
         ))}
       </Swiper>
     </section>
-  )
-}
+  );
+};
 
-export default Moments
+export default Moments;

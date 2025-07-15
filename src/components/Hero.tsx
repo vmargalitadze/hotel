@@ -17,7 +17,7 @@ const slides = [
   {
     id: 2,
     image: "/hero/vQEAIdbkKzlqj6PkO6jU6eK8H2oxTkD9lKPIobb3.jpeg",
-    title: "დაისვენე მშვიდ გარემოში",
+    title: "დაისვენე მშვიდ გარემოში"
   },
 
 ];
@@ -49,8 +49,8 @@ const Hero = () => {
               <div className="absolute inset-0 bg-black/30 z-10" />
               {/* Content */}
               <div className="relative z-20 flex flex-col items-center justify-center text-center px-4 font-cormorant">
-                <h1 className="text-3xl md:text-5xl font-cormorant font-extrabold text-white mb-4 drop-shadow-lg leading-tight">
-                  {slide.title.split(",")[0]},
+                <h1 className=" text-[20px] mb-4 md:text-[30px] font-cormorant font-bold md:text-start text-center text-white">
+                  {slide.title.split(",")[0]}
                   <br />
                   <span className="block mt-2">{slide.title.split(",")[1]}</span>
                 </h1>

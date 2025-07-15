@@ -1,19 +1,6 @@
 import React from "react";
+import rooms from "./data";
 
-const cottages = [
-  {
-    id: 1,
-    name: "The Forest Haven",
-  },
-  {
-    id: 2,
-    name: "Lakeside Serenity",
-  },
-  {
-    id: 3,
-    name: "Mountain View",
-  },
-];
 
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
@@ -33,7 +20,7 @@ function Cottages() {
             </h2>
 
             <div className="grid mt-2 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
-              {cottages.map((cottage, index) => {
+              {rooms.map((cottage, index) => {
                 // Define class name based on index
                 const indexClass =
                   index === 0

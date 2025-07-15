@@ -1,23 +1,21 @@
 import Image from "next/image";
+import BookingForm from "./BookingForm";
+import { getBookingsByRoomId } from "@/actions/booking";
+import rooms from "@/components/data";
 
 const RoomDetailsPage = async(props: {
   params:Promise< {id:string,locale: string} >
 }) => {
   const {id} = await props.params;
-  const roomId = id;
+  const roomId = Number(id);
 
-  // Placeholder data (replace with real fetch later)
-  const room = {
-    id: roomId,
-    name: "ლუქსი ოთახი",
-    price: 210,
-    images: [
-      "/cottages/1.webp",
-      "/rooms/302939238.jpg",
-      "/rooms/564959252.jpg",
-      "/rooms/cottage-image-for-rc-lp.jpg",
-    ],
-  };
+  // Get room data from rooms array
+  const room = rooms.find(r => r.id === roomId);
+  if (!room) return <div>ოთახი ვერ მოიძებნა</div>;
+
+  // Fetch booked date ranges for this room
+  const bookings = await getBookingsByRoomId(roomId);
+  const bookedRanges = bookings.map(b => ({ checkIn: b.checkIn.toISOString().slice(0,10), checkOut: b.checkOut.toISOString().slice(0,10) }));
 
   return (
     <div className="max-w-7xl mx-auto px-4 mt-16 py-10 font-cormorant">
@@ -32,7 +30,7 @@ const RoomDetailsPage = async(props: {
         {/* Images */}
         <div className="md:col-span-2 space-y-4">
           <Image
-            src={room.images[0]}
+            src={room.image}
             alt="ოთახის მთავარი ფოტო"
             width={800}
             height={500}
@@ -55,46 +53,14 @@ const RoomDetailsPage = async(props: {
         {/* Reservation Section */}
         <div className="bg-gray-100 p-6 rounded-xl shadow-md font-cormorant">
           <h2 className="text-xl font-semibold mb-4 font-cormorant">დაჯავშნა</h2>
-
-          <div className="space-y-3 font-cormorant">
-            <input type="date" className="w-full px-4 py-2 border rounded font-cormorant" placeholder="ჩამოსვლის თარიღი" />
-            <input type="date" className="w-full px-4 py-2 border rounded font-cormorant" placeholder="გამგზავრების თარიღი" />
-            <select className="w-full px-4 py-2 border rounded font-cormorant">
-              <option>1 ოთახი</option>
-              <option>2 ოთახი</option>
-              <option>3 ოთახი</option>
-            </select>
-            <select className="w-full px-4 py-2 border rounded font-cormorant">
-              <option>1 სტუმარი</option>
-              <option>2 სტუმარი</option>
-              <option>3 სტუმარი</option>
-            </select>
-            <select className="w-full px-4 py-2 border rounded font-cormorant">
-              <option>1 ბავშვი</option>
-              <option>2 ბავშვი</option>
-              <option>3 ბავშვი</option>
-            </select>
-
-            <div>
-              <h4 className="font-semibold mb-2 font-cormorant">დამატებითი სერვისები</h4>
-              <div className="space-y-2">
-                <label className="flex gap-2 items-center font-cormorant">კონდიციონერი</label>
-                <label className="flex gap-2 items-center font-cormorant">უფასო ინტერნეტი</label>
-                <label className="flex gap-2 items-center font-cormorant">LED ტელევიზორი</label>
-                <label className="flex gap-2 items-center font-cormorant">მიკროტალღური ღუმელი</label>
-              </div>
-            </div>
-
-            <div className="mt-4 font-bold text-lg font-cormorant">₾{room.price} / ღამე</div>
-            <button className="w-full mt-2 bg-orange-500 text-white font-semibold py-2 rounded hover:bg-orange-600 font-cormorant">შეამოწმე ხელმისაწვდომობა</button>
-          </div>
+          <BookingForm roomId={roomId} price={room.price} bookedRanges={bookedRanges} />
         </div>
       </div>
 
       {/* Amenities */}
       <div className="mt-12 font-cormorant">
-        <h3 className="text-2xl font-semibold mb-4 font-cormorant">სერვისები</h3>
-        <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 text-gray-700 list-disc list-inside font-cormorant">
+        <h3 className="text-[20px] font-bold mb-4 font-cormorant">სერვისები</h3>
+        <ul className="grid grid-cols-2 text-[18px] md:grid-cols-3 lg:grid-cols-4 gap-2 text-gray-700 list-disc list-inside font-cormorant">
           <li>42&quot; სრული ეკრანის ტელევიზორი</li>
           <li>მინი-მაცივარი</li>
           <li>სეიფი</li>
@@ -105,8 +71,8 @@ const RoomDetailsPage = async(props: {
 
       {/* Rules */}
       <div className="mt-10 font-cormorant">
-        <h3 className="text-2xl font-semibold mb-4 font-cormorant">წესები და პირობები</h3>
-        <ul className="list-disc list-inside text-gray-700 space-y-1 font-cormorant">
+        <h3 className="text-[20px] font-bold mb-4 font-cormorant">წესები და პირობები</h3>
+        <ul className="list-disc list-inside text-[18px] text-gray-700 space-y-1 font-cormorant">
           <li>მოწევა აკრძალულია</li>
           <li>ჩექ-ინი 12:00 საათის შემდეგ</li>
           <li>ჩექ-აუტი 11:00 საათამდე</li>
@@ -130,5 +96,4 @@ const RoomDetailsPage = async(props: {
     </div>
   );
 }
-
 export default RoomDetailsPage;

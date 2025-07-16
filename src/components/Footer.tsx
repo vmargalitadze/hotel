@@ -27,14 +27,9 @@ const Footer = () => {
             href="/about"
             className="hover:text-[#ff7200] transition-colors duration-200"
           >
-            შესახებ
+            ჩვენს შესახებ
           </Link>
-          <Link
-            href="/contact"
-            className="hover:text-[#ff7200] transition-colors duration-200"
-          >
-            კონტაქტი
-          </Link>
+      
         </nav>
         {/* Social Icons */}
         <div className="flex gap-5">

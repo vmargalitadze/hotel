@@ -35,17 +35,12 @@ function Header() {
             </Link>
 
             <Link
-              href="#about"
+              href="/about"
               className=" hover:text-[#ff7200] px-3 py-2 rounded-md text-[20px] font-bold transition-colors duration-200"
             >
               ჩვენს შესახებ
             </Link>
-            <Link
-              href="#contact"
-              className=" hover:text-[#ff7200] px-3 py-2 rounded-md text-[20px] font-bold transition-colors duration-200"
-            >
-              კონტაქტი
-            </Link>
+           
           </nav>
 
           {/* CTA Button - Desktop */}
@@ -112,24 +107,14 @@ function Header() {
           </Link>
 
           <Link
-            href="#about"
+            href="/about"
             onClick={closeMenu}
             className=" hover:text-[#ff7200] block px-3 py-2 rounded-md text-[18px] font-medium transition-colors duration-200"
           >
             ჩვენს შესახებ
           </Link>
-          <Link
-            href="#contact"
-            onClick={closeMenu}
-            className=" hover:text-[#ff7200] block px-3 py-2 rounded-md text-[18px] font-medium transition-colors duration-200"
-          >
-            კონტაქტი
-          </Link>
-          <div className="pt-4 pb-3 border-t border-gray-200">
-            <button className="w-full bg-[#ff7200] text-white px-4 py-2 rounded-md text-[18px] font-medium transition-colors duration-200">
-              დაჯავშნა
-            </button>
-          </div>
+      
+        
         </div>
       </div>
     </header>

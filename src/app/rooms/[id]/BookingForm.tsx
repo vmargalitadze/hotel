@@ -10,7 +10,6 @@ interface FieldErrors {
 
 // ✅ Helper: parse YYYY-MM-DD string to local Date (no -1 day issues)
 
-
 // ✅ Helper: add days
 function addDays(date: Date, days: number) {
   const result = new Date(date);
@@ -85,13 +84,13 @@ export default function BookingForm({
         Array.isArray((err as { errors?: unknown }).errors)
       ) {
         const errors: FieldErrors = {};
-        (err as { errors: Array<{ path: string[]; message: string }> }).errors.forEach(
-          (zodErr) => {
-            if (zodErr.path && zodErr.path[0]) {
-              errors[zodErr.path[0]] = zodErr.message;
-            }
+        (
+          err as { errors: Array<{ path: string[]; message: string }> }
+        ).errors.forEach((zodErr) => {
+          if (zodErr.path && zodErr.path[0]) {
+            errors[zodErr.path[0]] = zodErr.message;
           }
-        );
+        });
         setFieldErrors(errors);
       } else {
         setError(
@@ -108,7 +107,11 @@ export default function BookingForm({
   }
   // ✅ Check if single date is blocked (within existing booking ranges)
   function isDateBlocked(date: Date) {
-    const current = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    const current = new Date(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate()
+    );
 
     return bookedRanges.some(({ checkIn, checkOut }) => {
       const start = parseLocalDate(checkIn);
@@ -150,10 +153,10 @@ export default function BookingForm({
           value={form.fullName}
           onChange={handleChange}
           placeholder="სრული სახელი"
-          className="w-full px-4 py-2 border rounded-lg text-[20px]"
+          className="w-full px-4 py-2 border border-gray-300 focus:border-[#ff7200] rounded-lg text-[20px] outline-none"
         />
         {fieldErrors.fullName && (
-          <div className="text-red-500 text-sm mt-1">
+          <div className="text-[#ff7200] text-sm mt-1">
             {fieldErrors.fullName}
           </div>
         )}
@@ -164,10 +167,10 @@ export default function BookingForm({
           value={form.email}
           onChange={handleChange}
           placeholder="ელ.ფოსტა"
-          className="w-full px-4 py-2 border rounded-lg text-[20px]"
+          className="w-full px-4 py-2 border border-gray-300 focus:border-[#ff7200] rounded-lg text-[20px] outline-none"
         />
         {fieldErrors.email && (
-          <div className="text-red-500 text-sm mt-1">{fieldErrors.email}</div>
+          <div className="text-[#ff7200] text-sm mt-1">{fieldErrors.email}</div>
         )}
       </div>
       <div>
@@ -176,10 +179,10 @@ export default function BookingForm({
           value={form.phone}
           onChange={handleChange}
           placeholder="ტელეფონი"
-          className="w-full px-4 py-2 border rounded-lg text-[20px]"
+          className="w-full px-4 py-2 border border-gray-300 focus:border-[#ff7200] rounded-lg text-[20px] outline-none"
         />
         {fieldErrors.phone && (
-          <div className="text-red-500 text-sm mt-1">{fieldErrors.phone}</div>
+          <div className="text-[#ff7200] text-sm mt-1">{fieldErrors.phone}</div>
         )}
       </div>
       <div>
@@ -188,10 +191,10 @@ export default function BookingForm({
           value={form.piradoba}
           onChange={handleChange}
           placeholder="პირადობა"
-          className="w-full px-4 py-2 border rounded-lg text-[20px]"
+          className="w-full px-4 py-2 border border-gray-300 focus:border-[#ff7200] rounded-lg text-[20px] outline-none"
         />
         {fieldErrors.piradoba && (
-          <div className="text-red-500 text-sm mt-1">
+          <div className="text-[#ff7200] text-sm mt-1">
             {fieldErrors.piradoba}
           </div>
         )}
@@ -208,7 +211,11 @@ export default function BookingForm({
           }}
           minDate={new Date()}
           filterDate={(date) => {
-            const current = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+            const current = new Date(
+              date.getFullYear(),
+              date.getMonth(),
+              date.getDate()
+            );
             return !bookedRanges.some(({ checkIn, checkOut }) => {
               const start = parseLocalDate(checkIn);
               const end = parseLocalDate(checkOut);
@@ -216,7 +223,7 @@ export default function BookingForm({
             });
           }}
           placeholderText="შესვლა"
-          className="w-full px-4 py-2 border rounded-lg text-[20px]"
+          className="w-full px-4 py-2 border border-gray-300 focus:border-[#ff7200] rounded-lg text-[20px] outline-none"
           dateFormat="yyyy-MM-dd"
         />
 
@@ -228,9 +235,15 @@ export default function BookingForm({
             setForm((prev) => ({ ...prev, checkOut: formatted }));
             setFieldErrors((prev) => ({ ...prev, checkOut: undefined }));
           }}
-          minDate={form.checkIn ? addDays(parseLocalDate(form.checkIn), 1) : new Date()}
+          minDate={
+            form.checkIn ? addDays(parseLocalDate(form.checkIn), 1) : new Date()
+          }
           filterDate={(date) => {
-            const current = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+            const current = new Date(
+              date.getFullYear(),
+              date.getMonth(),
+              date.getDate()
+            );
             return !bookedRanges.some(({ checkIn, checkOut }) => {
               const start = parseLocalDate(checkIn);
               const end = parseLocalDate(checkOut);
@@ -238,7 +251,7 @@ export default function BookingForm({
             });
           }}
           placeholderText="გასვლა"
-          className="w-full  px-4 py-2 border rounded-lg text-[20px]"
+          className="w-full  px-4 py-2 border border-gray-300 focus:border-[#ff7200] rounded-lg text-[20px] outline-none"
           dateFormat="yyyy-MM-dd"
         />
       </div>
@@ -248,7 +261,7 @@ export default function BookingForm({
           name="guests"
           value={form.guests}
           onChange={handleChange}
-          className="w-full px-4 py-2 border rounded text-[20px]"
+          className="w-full px-4 py-2 border border-gray-300 focus:border-[#ff7200] rounded-lg text-[20px] outline-none"
         >
           {Array.from({ length: capacity }, (_, i) => (
             <option key={i + 1} value={i + 1}>
@@ -257,7 +270,9 @@ export default function BookingForm({
           ))}
         </select>
         {fieldErrors.guests && (
-          <div className="text-red-500 text-sm mt-1">{fieldErrors.guests}</div>
+          <div className="text-[#ff7200] text-sm mt-1">
+            {fieldErrors.guests}
+          </div>
         )}
       </div>
 

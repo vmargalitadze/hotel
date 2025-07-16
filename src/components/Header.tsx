@@ -1,18 +1,18 @@
-'use client'
+"use client";
 
-import Link from 'next/link'
-import React, { useState } from 'react'
+import Link from "next/link";
+import React, { useState } from "react";
 
 function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen)
-  }
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   const closeMenu = () => {
-    setIsMenuOpen(false)
-  }
+    setIsMenuOpen(false);
+  };
 
   return (
     <header className="bg-white shadow-md fixed top-0 left-0 right-0 z-50">
@@ -20,37 +20,28 @@ function Header() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <h1 className="text-2xl font-bold text-gray-800">სასტუმრო</h1>
+            <Link href="/">
+              <h1 className="text-2xl font-bold text-gray-800">სასტუმრო</h1>
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
-            <Link 
-              href="/" 
+            <Link
+              href="/"
               className="text-gray-600 hover:text-[#ff7200]  px-3 py-2 rounded-md text-[20px] font-bold transition-colors duration-200"
             >
               მთავარი
             </Link>
-            <Link 
-              href="#rooms" 
-              className="text-gray-600 hover:text-[#ff7200] px-3 py-2 rounded-md text-[20px] font-bold transition-colors duration-200"
-            >
-              ნომრები
-            </Link>
-            <Link 
-              href="#amenities" 
-              className="text-gray-600 hover:text-[#ff7200] px-3 py-2 rounded-md text-[20px] font-bold transition-colors duration-200"
-            >
-              მომსახურება
-            </Link>
-            <Link 
-              href="#about" 
+
+            <Link
+              href="#about"
               className="text-gray-600 hover:text-[#ff7200] px-3 py-2 rounded-md text-[20px] font-bold transition-colors duration-200"
             >
               ჩვენს შესახებ
             </Link>
-            <Link 
-              href="#contact" 
+            <Link
+              href="#contact"
               className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-[20px] font-bold transition-colors duration-200"
             >
               კონტაქტი
@@ -74,7 +65,7 @@ function Header() {
               <span className="sr-only">მთავარი მენიუ გახსნა</span>
               {/* Hamburger icon */}
               <svg
-                className={`${isMenuOpen ? 'hidden' : 'block'} h-6 w-6`}
+                className={`${isMenuOpen ? "hidden" : "block"} h-6 w-6`}
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -90,7 +81,7 @@ function Header() {
               </svg>
               {/* Close icon */}
               <svg
-                className={`${isMenuOpen ? 'block' : 'hidden'} h-6 w-6`}
+                className={`${isMenuOpen ? "block" : "hidden"} h-6 w-6`}
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -110,7 +101,7 @@ function Header() {
       </div>
 
       {/* Mobile menu */}
-      <div className={`${isMenuOpen ? 'block' : 'hidden'} md:hidden`}>
+      <div className={`${isMenuOpen ? "block" : "hidden"} md:hidden`}>
         <div className="px-2 pt-2 pb-3 space-y-1 text-center justify-center items-center flex flex-col sm:px-3 bg-white h-screen border-t border-gray-200">
           <Link
             href="/"
@@ -119,20 +110,7 @@ function Header() {
           >
             მთავარი
           </Link>
-          <Link
-            href="#rooms"
-            onClick={closeMenu}
-            className="text-gray-600 hover:text-gray-900 block px-3 py-2 rounded-md text-[18px] font-medium transition-colors duration-200"
-          >
-            ნომრები
-          </Link>
-          <Link
-            href="#amenities"
-            onClick={closeMenu}
-            className="text-gray-600 hover:text-gray-900 block px-3 py-2 rounded-md text-[18px] font-medium transition-colors duration-200"
-          >
-            მომსახურება
-          </Link>
+
           <Link
             href="#about"
             onClick={closeMenu}
@@ -155,7 +133,7 @@ function Header() {
         </div>
       </div>
     </header>
-  )
+  );
 }
 
-export default Header
+export default Header;

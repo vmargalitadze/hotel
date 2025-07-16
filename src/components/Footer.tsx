@@ -22,12 +22,7 @@ const Footer = () => {
           >
            მთავარი
           </Link>
-          <Link
-            href="/rooms"
-            className="hover:text-[#ff7200] transition-colors duration-200"
-          >
-            ოთახები
-          </Link>
+     
           <Link
             href="/about"
             className="hover:text-[#ff7200] transition-colors duration-200"

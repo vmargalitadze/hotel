@@ -150,7 +150,7 @@ export default function BookingForm({
           value={form.fullName}
           onChange={handleChange}
           placeholder="სრული სახელი"
-          className="w-full px-4 py-2 border rounded"
+          className="w-full px-4 py-2 border rounded-lg text-[20px]"
         />
         {fieldErrors.fullName && (
           <div className="text-red-500 text-sm mt-1">
@@ -164,7 +164,7 @@ export default function BookingForm({
           value={form.email}
           onChange={handleChange}
           placeholder="ელ.ფოსტა"
-          className="w-full px-4 py-2 border rounded"
+          className="w-full px-4 py-2 border rounded-lg text-[20px]"
         />
         {fieldErrors.email && (
           <div className="text-red-500 text-sm mt-1">{fieldErrors.email}</div>
@@ -176,7 +176,7 @@ export default function BookingForm({
           value={form.phone}
           onChange={handleChange}
           placeholder="ტელეფონი"
-          className="w-full px-4 py-2 border rounded"
+          className="w-full px-4 py-2 border rounded-lg text-[20px]"
         />
         {fieldErrors.phone && (
           <div className="text-red-500 text-sm mt-1">{fieldErrors.phone}</div>
@@ -188,7 +188,7 @@ export default function BookingForm({
           value={form.piradoba}
           onChange={handleChange}
           placeholder="პირადობა"
-          className="w-full px-4 py-2 border rounded"
+          className="w-full px-4 py-2 border rounded-lg text-[20px]"
         />
         {fieldErrors.piradoba && (
           <div className="text-red-500 text-sm mt-1">
@@ -215,8 +215,8 @@ export default function BookingForm({
               return current >= start && current < end;
             });
           }}
-          placeholderText="ჩამოსვლის თარიღი"
-          className="w-full px-4 py-2 border rounded"
+          placeholderText="შესვლა"
+          className="w-full px-4 py-2 border rounded-lg text-[20px]"
           dateFormat="yyyy-MM-dd"
         />
 
@@ -237,8 +237,8 @@ export default function BookingForm({
               return current > start && current < end;
             });
           }}
-          placeholderText="გამგზავრების თარიღი"
-          className="w-full px-4 py-2 border rounded"
+          placeholderText="გასვლა"
+          className="w-full  px-4 py-2 border rounded-lg text-[20px]"
           dateFormat="yyyy-MM-dd"
         />
       </div>
@@ -248,7 +248,7 @@ export default function BookingForm({
           name="guests"
           value={form.guests}
           onChange={handleChange}
-          className="w-full px-4 py-2 border rounded"
+          className="w-full px-4 py-2 border rounded text-[20px]"
         >
           {Array.from({ length: capacity }, (_, i) => (
             <option key={i + 1} value={i + 1}>
@@ -283,7 +283,7 @@ export default function BookingForm({
                 new Date(range.checkOut).toDateString()
             ))
         }
-        className="w-full mt-2 bg-[#ff7200] rounded-2xl text-white font-semibold py-2 cursor-pointer font-cormorant"
+        className="w-full text-[20px] mt-2 bg-[#ff7200] rounded-lg text-white font-semibold py-2 cursor-pointer font-cormorant"
       >
         {loading ? "იტვირთება..." : "დაჯავშნა"}
       </button>

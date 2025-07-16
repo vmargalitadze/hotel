@@ -29,20 +29,20 @@ function Header() {
           <nav className="hidden md:flex space-x-8">
             <Link
               href="/"
-              className="text-gray-600 hover:text-[#ff7200]  px-3 py-2 rounded-md text-[20px] font-bold transition-colors duration-200"
+              className=" hover:text-[#ff7200]  px-3 py-2 rounded-md text-[20px] font-bold transition-colors duration-200"
             >
               მთავარი
             </Link>
 
             <Link
               href="#about"
-              className="text-gray-600 hover:text-[#ff7200] px-3 py-2 rounded-md text-[20px] font-bold transition-colors duration-200"
+              className=" hover:text-[#ff7200] px-3 py-2 rounded-md text-[20px] font-bold transition-colors duration-200"
             >
               ჩვენს შესახებ
             </Link>
             <Link
               href="#contact"
-              className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-[20px] font-bold transition-colors duration-200"
+              className=" hover:text-[#ff7200] px-3 py-2 rounded-md text-[20px] font-bold transition-colors duration-200"
             >
               კონტაქტი
             </Link>
@@ -106,7 +106,7 @@ function Header() {
           <Link
             href="/"
             onClick={closeMenu}
-            className="text-gray-600 hover:text-gray-900 block px-3 py-2 rounded-md text-[18px] font-medium transition-colors duration-200"
+            className=" hover:text-[#ff7200] block px-3 py-2 rounded-md text-[18px] font-medium transition-colors duration-200"
           >
             მთავარი
           </Link>
@@ -114,19 +114,19 @@ function Header() {
           <Link
             href="#about"
             onClick={closeMenu}
-            className="text-gray-600 hover:text-gray-900 block px-3 py-2 rounded-md text-[18px] font-medium transition-colors duration-200"
+            className=" hover:text-[#ff7200] block px-3 py-2 rounded-md text-[18px] font-medium transition-colors duration-200"
           >
             ჩვენს შესახებ
           </Link>
           <Link
             href="#contact"
             onClick={closeMenu}
-            className="text-gray-600 hover:text-gray-900 block px-3 py-2 rounded-md text-[18px] font-medium transition-colors duration-200"
+            className=" hover:text-[#ff7200] block px-3 py-2 rounded-md text-[18px] font-medium transition-colors duration-200"
           >
             კონტაქტი
           </Link>
           <div className="pt-4 pb-3 border-t border-gray-200">
-            <button className="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-[18px] font-medium transition-colors duration-200">
+            <button className="w-full bg-[#ff7200] text-white px-4 py-2 rounded-md text-[18px] font-medium transition-colors duration-200">
               დაჯავშნა
             </button>
           </div>

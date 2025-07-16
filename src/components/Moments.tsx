@@ -15,7 +15,7 @@ const slides = [
 
 const Moments = () => {
   return (
-    <section className="relative mt-16 w-full h-[80vh] md:h-screen overflow-hidden">
+    <section className="relative mt-16 w-full h-[60vh] overflow-hidden">
       <style jsx>{`
         @keyframes continuousZoom {
           0% {

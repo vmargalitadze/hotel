@@ -1,7 +1,6 @@
 import React from "react";
 import rooms from "./data";
 
-
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 function Cottages() {
@@ -26,10 +25,10 @@ function Cottages() {
                   index === 0
                     ? "first"
                     : index === 1
-                      ? "second"
-                      : index === 2
-                        ? "third"
-                        : "";
+                    ? "second"
+                    : index === 2
+                    ? "third"
+                    : "";
 
                 return (
                   <div
@@ -37,15 +36,14 @@ function Cottages() {
                     className={`${indexClass} rounded-lg flex flex-col justify-end items-center text-white h-full`}
                   >
                     <div className="mb-6 flex w-full items-center justify-around">
-                      <h4 className="text-[20px] md:text-[24px] font-semibold">
-                        <Link
-                          href={`/rooms/${cottage.id}`}
-                          className="text-white hover:underline"
-                          aria-label={cottage.name}
-                        >
-                          <span>{cottage.name}</span>
-                        </Link>
-                      </h4>
+                      <Link
+                        href={`/rooms/${cottage.id}`}
+                        className="text-white hover:underline text-[20px] md:text-[24px] font-semibold"
+                        aria-label={cottage.name}
+                      >
+                        <span>{cottage.name}</span>
+                      </Link>
+
                       <Link
                         href={`/rooms/${cottage.id}`}
                         aria-label={`Go to ${cottage.name}`}
@@ -54,7 +52,6 @@ function Cottages() {
                         <ArrowRight className="text-black text-xl" />
                       </Link>
                     </div>
-
                   </div>
                 );
               })}

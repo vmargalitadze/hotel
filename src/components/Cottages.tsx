@@ -26,30 +26,35 @@ function Cottages() {
                   index === 0
                     ? "first"
                     : index === 1
-                    ? "second"
-                    : index === 2
-                    ? "third"
-                    : "";
+                      ? "second"
+                      : index === 2
+                        ? "third"
+                        : "";
 
                 return (
                   <div
                     key={cottage.id}
                     className={`${indexClass} rounded-lg flex flex-col justify-end items-center text-white h-full`}
                   >
-                    <div className="mb-6 flex flex-col w-full">
-                      <h4 className="text-[20px] md:text-[30px] font-semibold w-full">
+                    <div className="mb-6 flex w-full items-center justify-around">
+                      <h4 className="text-[20px] md:text-[24px] font-semibold">
                         <Link
                           href={`/rooms/${cottage.id}`}
-                          className="flex items-center justify-around w-full text-white hover:underline"
-                          aria-label="Lakeside Serenity"
+                          className="text-white hover:underline"
+                          aria-label={cottage.name}
                         >
                           <span>{cottage.name}</span>
-                          <span className="bg-[#ff7200] rounded-full w-10 h-10 flex items-center justify-center ml-4 shrink-0">
-                            <ArrowRight className="text-black text-2xl" />
-                          </span>
                         </Link>
                       </h4>
+                      <Link
+                        href={`/rooms/${cottage.id}`}
+                        aria-label={`Go to ${cottage.name}`}
+                        className="bg-[#ff7200] rounded-full w-10 h-10 flex items-center justify-center shrink-0 hover:opacity-90 transition"
+                      >
+                        <ArrowRight className="text-black text-xl" />
+                      </Link>
                     </div>
+
                   </div>
                 );
               })}

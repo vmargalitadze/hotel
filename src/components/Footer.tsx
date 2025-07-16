@@ -18,7 +18,7 @@ const Footer = () => {
         <nav className="flex gap-8 text-base font-medium">
           <Link
             href="/"
-            className="hover:text-[#ff7200] transition-colors duration-200"
+            className="hover:text-[#ff7200]  transition-colors duration-200"
           >
            მთავარი
           </Link>
@@ -45,9 +45,9 @@ const Footer = () => {
         <div className="flex gap-5">
           {/* Facebook */}
           <a href="#" className="group" aria-label="Facebook">
-            <span className="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 group-hover:bg-[#ff7200] transition-colors duration-200">
+            <span className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 group-hover:bg-[#ff7200] transition-colors duration-200">
               <svg
-                className="w-4 h-4 text-white rounded-full group-hover:text-gray-900"
+                className="w-6 h-6 text-white rounded-full group-hover:text-gray-900"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
@@ -57,9 +57,9 @@ const Footer = () => {
           </a>
           {/* Instagram */}
           <a href="#" className="group" aria-label="Instagram">
-            <span className="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 group-hover:bg-[#ff7200] transition-colors duration-200">
+            <span className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 group-hover:bg-[#ff7200] transition-colors duration-200">
               <svg
-                className="w-4 h-4 text-white rounded-full group-hover:text-gray-900"
+                className="w-6 h-6 text-white rounded-full group-hover:text-gray-900"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >

@@ -22,7 +22,7 @@ function Perfect() {
             სრულყოფილი გაქცევა გელოდება
           </h1>
 
-          <div className="relative w-full max-w-[350px] h-64 md:h-[400px] rounded-xl overflow-hidden shadow-lg mb-4 group">
+          <div className="relative w-full max-w-[470px] h-64 md:h-[400px] rounded-xl overflow-hidden shadow-lg mb-4 group">
             <Image
               src="/perfect/pratik-bachhav-xtae1e3si6s-unsplash.webp"
               alt="სურათი"
@@ -33,7 +33,7 @@ function Perfect() {
             <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition duration-300" />
           </div>
 
-          <p className=" text-[18px] text-black font-cormorant">
+          <p className=" text-[20px] text-center text-black font-cormorant">
             გაიღვიძეთ განსაცვიფრებელი ხედებით, დაისვენეთ მყუდრო კოტეჯებში და
             შეისწავლეთ თვალწარმტაცი ბილიკები, ჩანჩქერები და ველური ბუნება.
             თავგადასავლებისთვის თუ დასვენებისთვის, ეს იდეალური ადგილია

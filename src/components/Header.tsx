@@ -27,31 +27,31 @@ function Header() {
           <nav className="hidden md:flex space-x-8">
             <Link 
               href="/" 
-              className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-[18px] font-medium transition-colors duration-200"
+              className="text-gray-600 hover:text-[#ff7200]  px-3 py-2 rounded-md text-[20px] font-bold transition-colors duration-200"
             >
               მთავარი
             </Link>
             <Link 
               href="#rooms" 
-              className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-[18px] font-medium transition-colors duration-200"
+              className="text-gray-600 hover:text-[#ff7200] px-3 py-2 rounded-md text-[20px] font-bold transition-colors duration-200"
             >
               ნომრები
             </Link>
             <Link 
               href="#amenities" 
-              className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-[18px] font-medium transition-colors duration-200"
+              className="text-gray-600 hover:text-[#ff7200] px-3 py-2 rounded-md text-[20px] font-bold transition-colors duration-200"
             >
               მომსახურება
             </Link>
             <Link 
               href="#about" 
-              className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-[18px] font-medium transition-colors duration-200"
+              className="text-gray-600 hover:text-[#ff7200] px-3 py-2 rounded-md text-[20px] font-bold transition-colors duration-200"
             >
               ჩვენს შესახებ
             </Link>
             <Link 
               href="#contact" 
-              className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-[18px] font-medium transition-colors duration-200"
+              className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-[20px] font-bold transition-colors duration-200"
             >
               კონტაქტი
             </Link>

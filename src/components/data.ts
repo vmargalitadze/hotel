@@ -1,7 +1,7 @@
 const rooms = [
   {
     id: 1,
-    name: "სტანდარტული ოთახი",
+    name: "სტანდარტული",
     price: 210,
     image: "/cottages/1.webp",
     images: [

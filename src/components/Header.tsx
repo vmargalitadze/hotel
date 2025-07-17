@@ -54,7 +54,7 @@ function Header() {
           <div className="md:hidden">
             <button
               onClick={toggleMenu}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 transition-colors duration-200"
+              className="inline-flex items-center justify-start p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 transition-colors duration-200"
               aria-expanded="false"
             >
               <span className="sr-only">მთავარი მენიუ გახსნა</span>
@@ -64,7 +64,7 @@ function Header() {
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke="currentColor"
+                stroke="#ff7200"
                 aria-hidden="true"
               >
                 <path
@@ -80,7 +80,7 @@ function Header() {
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke="currentColor"
+                stroke="#ff7200"
                 aria-hidden="true"
               >
                 <path
@@ -97,7 +97,7 @@ function Header() {
 
       {/* Mobile menu */}
       <div className={`${isMenuOpen ? "block" : "hidden"} md:hidden`}>
-        <div className="px-2 pt-2 pb-3 space-y-1 text-center justify-center items-center flex flex-col sm:px-3 bg-white h-screen border-t border-gray-200">
+        <div className="px-2 pt-2 pb-3 space-y-1 text-center justify-start items-center flex flex-col sm:px-3 bg-white h-screen border-t border-gray-200">
           <Link
             href="/"
             onClick={closeMenu}
